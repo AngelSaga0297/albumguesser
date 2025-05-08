@@ -124,7 +124,7 @@ const searchArtists = async () => {
     setArtists(data);
   } catch (err) {
     if (err.name !== 'AbortError') {
-      setError('Error al buscar artistass');
+      setError('Error al buscar artistasss');
       console.error(err);
     }
   } finally {

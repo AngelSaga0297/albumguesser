@@ -14,34 +14,35 @@ const AlbumGuesser = ({ albums: initialAlbums, onRestart, onNewArtist }) => {
   const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
+    // Solo buscar tracks si albums tiene elementos y el currentIndex es válido
+    if (!albums || albums.length === 0 || !albums[currentIndex] || !albums[currentIndex].id) {
+      setTracks([]);
+      setLoadingTracks(false);
+      return;
+    }
     const fetchTracks = async () => {
-        try {
-          setLoadingTracks(true);
-          const response = await fetch(`/.netlify/functions/tracks?q=${albums[currentIndex]?.id}`);
-          
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-      
-          const contentType = response.headers.get('content-type');
-          if (!contentType?.includes('application/json')) {
-            throw new Error('Response is not JSON');
-          }
-      
-          const data = await response.json();
-          setTracks(data);
-          console.log({'data':data});
-          console.log({'tracks':tracks});
-        } catch (error) {
-          console.error('Error loading tracks:', error);
-          setTracks([]); // Asegurar que tracks siempre es un array
-        } finally {
-          setLoadingTracks(false);
+      try {
+        setLoadingTracks(true);
+        const response = await fetch(`/.netlify/functions/tracks?q=${albums[currentIndex].id}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
-      };
-
+        const contentType = response.headers.get('content-type');
+        if (!contentType?.includes('application/json')) {
+          throw new Error('Response is not JSON');
+        }
+        const data = await response.json();
+        setTracks(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error('Error loading tracks:', error);
+        setTracks([]);
+      } finally {
+        setLoadingTracks(false);
+      }
+    };
     fetchTracks();
-    }, [currentIndex, albums]);
+  }, [albums, currentIndex]);
+
   const normalizeText = (text) => {
     return text
       .normalize("NFD")

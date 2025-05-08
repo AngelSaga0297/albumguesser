@@ -7,7 +7,10 @@ exports.handler = async function(event, context) {
     if (!albumId) {
       return {
         statusCode: 200,
-        body: JSON.stringify([])
+        headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify([])
       };
     }
 
@@ -17,6 +20,9 @@ exports.handler = async function(event, context) {
     if (!clientId || !clientSecret) {
       return {
         statusCode: 500,
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify({ error: 'Spotify credentials not set in environment variables.' })
       };
     }
@@ -53,6 +59,9 @@ exports.handler = async function(event, context) {
 
     return {
       statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(tracks)
     };
   } catch (error) {

@@ -37,7 +37,7 @@ function App() {
 const fetchArtistAlbums = async (artistId) => {
   try {
     setLoadingAlbums(true);
-    const response = await fetch(`/artists/${artistId}/albums?include_tracks=true`);
+    const response = await fetch(`.netlify/functions/albums/?q=${artistId}`);
     const data = await response.json();
     setAlbums(data);
   } catch (err) {

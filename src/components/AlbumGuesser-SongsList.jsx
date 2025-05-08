@@ -205,6 +205,10 @@ const AlbumGuesser = ({ albums: initialAlbums, onRestart, onNewArtist }) => {
                   <pre>{JSON.stringify(albums, null, 2)}</pre>
                 </div>
 
+                <div className="text-xs text-green-200 bg-green-900/80 p-2 rounded mb-2">
+                  <div>tracks.length: {tracks.length}</div>
+                  <pre>{JSON.stringify(tracks, null, 2)}</pre>
+                </div>
                 <div className="w-full max-w-6xl flex-1 overflow-y-auto">
                   {(!tracks || tracks.length === 0) ? (
                     <div className="text-white bg-red-800/80 p-4 rounded-lg text-center">

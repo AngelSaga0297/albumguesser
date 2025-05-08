@@ -30,6 +30,8 @@ const AlbumGuesser = ({ albums: initialAlbums, onRestart, onNewArtist }) => {
       
           const data = await response.json();
           setTracks(data);
+          console.log({'data':data});
+          console.log({'tracks':tracks});
         } catch (error) {
           console.error('Error loading tracks:', error);
           setTracks([]); // Asegurar que tracks siempre es un array

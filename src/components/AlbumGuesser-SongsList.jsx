@@ -198,6 +198,12 @@ const AlbumGuesser = ({ albums: initialAlbums, onRestart, onNewArtist }) => {
                 <h3 className="text-2xl font-bold text-white mb-6 text-center">
                     Canciones del álbum
                 </h3>
+                <div className="text-xs text-yellow-200 bg-yellow-900/80 p-2 rounded mb-2">
+                  <div>albums.length: {albums.length}</div>
+                  <div>currentIndex: {currentIndex}</div>
+                  <div>albumId usado: {albums[currentIndex]?.id || "N/A"}</div>
+                  <pre>{JSON.stringify(albums, null, 2)}</pre>
+                </div>
 
                 <div className="w-full max-w-6xl flex-1 overflow-y-auto">
                   {(!tracks || tracks.length === 0) ? (

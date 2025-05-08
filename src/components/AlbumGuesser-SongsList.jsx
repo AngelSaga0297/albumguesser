@@ -200,25 +200,32 @@ const AlbumGuesser = ({ albums: initialAlbums, onRestart, onNewArtist }) => {
                 </h3>
 
                 <div className="w-full max-w-6xl flex-1 overflow-y-auto">
+                  {(!tracks || tracks.length === 0) ? (
+                    <div className="text-white bg-red-800/80 p-4 rounded-lg text-center">
+                      <p>No se encontraron canciones para este álbum.</p>
+                      <pre className="text-xs text-gray-300 mt-2 bg-gray-900 p-2 rounded overflow-auto max-h-40">{JSON.stringify(tracks, null, 2)}</pre>
+                    </div>
+                  ) : (
                     <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 p-2 sm:p-4">
-                    {tracks.map(track => (
+                      {tracks.map(track => (
                         <div 
-                        key={track.id} 
-                        className="bg-gray-800/50 p-4 rounded-lg hover:bg-gray-700/60 transition-colors h-full"
+                          key={track.id} 
+                          className="bg-gray-800/50 p-4 rounded-lg hover:bg-gray-700/60 transition-colors h-full"
                         >
-                        <div className="flex items-center gap-3 h-full w-auto">
+                          <div className="flex items-center gap-3 h-full w-auto">
                             <span className="text-gray-400 font-mono text-base sm:text-lg w-8 text-right">
-                            {track.track_number}.
+                              {track.track_number}.
                             </span>
                             <div className="flex-1 min-w-0 w-auto">
-                            <p className="text-white font-medium text-balance text-sm sm:text-base">
+                              <p className="text-white font-medium text-balance text-sm sm:text-base">
                                 {track.name}
-                            </p>
+                              </p>
                             </div>
+                          </div>
                         </div>
-                        </div>
-                    ))}
+                      ))}
                     </div>
+                  )}
                 </div>
             </div>
         )}

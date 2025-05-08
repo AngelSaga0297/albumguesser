@@ -24,6 +24,7 @@ const AlbumGuesser = ({ albums: initialAlbums, onRestart, onNewArtist }) => {
       try {
         setLoadingTracks(true);
         const response = await fetch(`/.netlify/functions/tracks?q=${albums[currentIndex].id}`);
+        console.log("FETCH RESPONSE:", response);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -32,6 +33,7 @@ const AlbumGuesser = ({ albums: initialAlbums, onRestart, onNewArtist }) => {
           throw new Error('Response is not JSON');
         }
         const data = await response.json();
+        console.log("FETCH DATA:", data);
         setTracks(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error('Error loading tracks:', error);

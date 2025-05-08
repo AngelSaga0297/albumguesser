@@ -7,6 +7,9 @@ exports.handler = async function(event, context) {
     if (!artistId) {
       return {
         statusCode: 200,
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify([])
       };
     }
@@ -17,6 +20,9 @@ exports.handler = async function(event, context) {
     if (!clientId || !clientSecret) {
       return {
         statusCode: 500,
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify({ error: 'Spotify credentials not set in environment variables.' })
       };
     }
@@ -54,12 +60,18 @@ exports.handler = async function(event, context) {
 
     return {
       statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(albums)
     };
   } catch (error) {
     console.error('Error fetching artist albums:', error);
     return {
       statusCode: 500,
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({ error: error.message })
     };
   }

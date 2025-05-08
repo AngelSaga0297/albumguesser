@@ -200,22 +200,10 @@ const AlbumGuesser = ({ albums: initialAlbums, onRestart, onNewArtist }) => {
                 <h3 className="text-2xl font-bold text-white mb-6 text-center">
                     Canciones del álbum
                 </h3>
-                <div className="text-xs text-yellow-200 bg-yellow-900/80 p-2 rounded mb-2">
-                  <div>albums.length: {albums.length}</div>
-                  <div>currentIndex: {currentIndex}</div>
-                  <div>albumId usado: {albums[currentIndex]?.id || "N/A"}</div>
-                  <pre>{JSON.stringify(albums, null, 2)}</pre>
-                </div>
-
-                <div className="text-xs text-green-200 bg-green-900/80 p-2 rounded mb-2">
-                  <div>tracks.length: {tracks.length}</div>
-                  <pre>{JSON.stringify(tracks, null, 2)}</pre>
-                </div>
                 <div className="w-full max-w-6xl flex-1 overflow-y-auto">
                   {(!tracks || tracks.length === 0) ? (
                     <div className="text-white bg-red-800/80 p-4 rounded-lg text-center">
                       <p>No se encontraron canciones para este álbum.</p>
-                      <pre className="text-xs text-gray-300 mt-2 bg-gray-900 p-2 rounded overflow-auto max-h-40">{JSON.stringify(tracks, null, 2)}</pre>
                     </div>
                   ) : (
                     <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 p-2 sm:p-4">

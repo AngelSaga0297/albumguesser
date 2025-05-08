@@ -7,6 +7,9 @@ exports.handler = async function(event, context) {
     if (!query || query.length < 3) {
       return {
         statusCode: 200,
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify([])
       };
     }
@@ -17,6 +20,9 @@ exports.handler = async function(event, context) {
     if (!clientId || !clientSecret) {
       return {
         statusCode: 500,
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify({ error: 'Spotify credentials not set in environment variables.' })
       };
     }
@@ -48,18 +54,24 @@ exports.handler = async function(event, context) {
       id: artist.id,
       name: artist.name,
       image: artist.images[0]?.url,
-      genres: artist.genres,
+      genres: artist.genres || [],
       popularity: artist.popularity
     }));
 
     return {
       statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(artists)
     };
   } catch (error) {
     console.error('Error searching artists:', error);
     return {
       statusCode: 500,
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({ error: error.message })
     };
   }

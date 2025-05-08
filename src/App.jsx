@@ -119,7 +119,7 @@ const searchArtists = async () => {
     const controller = new AbortController();
     const signal = controller.signal;
     
-    const response = await fetch(`/api/search/artists?q=${encodeURIComponent(searchQuery)}`, { signal });
+    const response = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(searchQuery)}&type=artist&limit=10`, { signal });
     const data = await response.json();
     setArtists(data);
   } catch (err) {

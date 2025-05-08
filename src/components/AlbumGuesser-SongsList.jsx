@@ -17,7 +17,7 @@ const AlbumGuesser = ({ albums: initialAlbums, onRestart, onNewArtist }) => {
     const fetchTracks = async () => {
         try {
           setLoadingTracks(true);
-          const response = await fetch(`/netlify/functions/tracks?q=${albums[currentIndex]?.id}`);
+          const response = await fetch(`/.netlify/functions/tracks?q=${albums[currentIndex]?.id}`);
           
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);

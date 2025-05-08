@@ -36,7 +36,7 @@ exports.handler = async function(event, context) {
 
     // Buscar tracks del album
     const spotifyResponse = await axios.get(
-      `https://api.spotify.com/v1/albums/${albumId}/tracks?limit=0`,
+      `https://api.spotify.com/v1/albums/${albumId}/tracks?limit=50`,
       {
         headers: {
           'Authorization': `Bearer ${accessToken}`

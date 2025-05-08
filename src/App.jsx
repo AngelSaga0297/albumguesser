@@ -119,7 +119,7 @@ const searchArtists = async () => {
     const controller = new AbortController();
     const signal = controller.signal;
     
-    const response = await fetch(`/search/artists?q=${encodeURIComponent(searchQuery)}`, { signal });
+    const response = await fetch(`/artists?q=${encodeURIComponent(searchQuery)}`, { signal });
     const data = await response.json();
     setArtists(data);
   } catch (err) {

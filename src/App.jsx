@@ -104,7 +104,7 @@ const fetchArtistAlbums = async (artistId) => {
   // Agrega este useEffect para búsqueda dinámica
 useEffect(() => {
   const timerId = setTimeout(() => {
-    if (searchQuery.trim().length > 2) { // Solo busca si hay al menos 3 caracteres
+    if (searchQuery.trim().length > 1) { // Solo busca si hay al menos 2 caracteres
       searchArtists();
     }
   }, 500); // Retraso de 500ms
@@ -155,7 +155,7 @@ const searchArtists = async () => {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Nombre del artista (al menos 3 caracteres)"
+                placeholder="Nombre del artista (al menos 2 caracteres)"
                 className="w-full p-3 text-lg border rounded-lg text-white bg-white/10 backdrop-blur-sm"
               />
               {loading && (

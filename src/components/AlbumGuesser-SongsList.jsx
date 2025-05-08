@@ -165,6 +165,16 @@ const AlbumGuesser = ({ albums: initialAlbums, onRestart, onNewArtist }) => {
 
   return (
     <div className="h-screen flex flex-col">
+        <div className="flex justify-start mb-4">
+          <button
+              onClick={onNewArtist}
+              className="bg-cyan-500 text-xl text-black px-8 py-2 rounded-lg cursor-pointer hover:bg-cyan-600 hover:text-white transition-all"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+              </svg>
+            </button>
+        </div>
         <div className="flex-1 flex flex-col justify-center items-center overflow-hidden">
         {/* Animación de éxito */}
         {showSuccess && (
@@ -187,18 +197,18 @@ const AlbumGuesser = ({ albums: initialAlbums, onRestart, onNewArtist }) => {
                 </h3>
 
                 <div className="w-full max-w-6xl flex-1 overflow-y-auto">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4">
+                    <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 p-2 sm:p-4">
                     {tracks.map(track => (
                         <div 
                         key={track.id} 
                         className="bg-gray-800/50 p-4 rounded-lg hover:bg-gray-700/60 transition-colors h-full"
                         >
                         <div className="flex items-center gap-3 h-full w-auto">
-                            <span className="text-gray-400 font-mono text-lg w-8 text-right">
+                            <span className="text-gray-400 font-mono text-base sm:text-lg w-8 text-right">
                             {track.track_number}.
                             </span>
                             <div className="flex-1 min-w-0 w-auto">
-                            <p className="text-white font-medium text-balance">
+                            <p className="text-white font-medium text-balance text-sm sm:text-base">
                                 {track.name}
                             </p>
                             </div>

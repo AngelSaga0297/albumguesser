@@ -135,7 +135,16 @@ const AlbumGuesser = ({ albums: initialAlbums, onRestart, onNewArtist }) => {
   }
 
   return (
-    <div className="h-screen flex flex-col">
+    <div className={`h-screen flex flex-col realtive overflow-hidden`}>
+    {/* Fondo de la imagen borroso */}
+    <div className="absolute inset-0 bg-center bg-cover blur-lg scale-110"
+    style={{
+      backgroundImage: `url('${albums[currentIndex].cover}')`,
+      zIndex: 0,
+    }}
+    aria-hidden="true">
+    </div>
+    <div className='relative z-10'>
       {/* Animación de éxito */}
       {showSuccess && (
         <div className="fixed inset-0 flex bg-gray-700/50 items-center justify-center z-50 pointer-events-none">
@@ -163,7 +172,7 @@ const AlbumGuesser = ({ albums: initialAlbums, onRestart, onNewArtist }) => {
         <img 
           src={albums[currentIndex].cover} 
           alt={albums[currentIndex].name}
-          className="max-w-full max-h-[80vh] object-contain shadow-2xl shadow-slate-950 mb-6"
+          className="max-w-full max-h-[80vh] object-contain shadow-2xl shadow-slate-950 mb-6 shadow-xl ring-1 ring-sky-900/50"
           style={{
             transition: 'opacity 0.3s ease',
           }}
@@ -185,7 +194,7 @@ const AlbumGuesser = ({ albums: initialAlbums, onRestart, onNewArtist }) => {
       </div>
 
       {/* Área de adivinanza */}
-      <div className="bg-gray-900 p-4 flex flex-col items-center">
+      <div className="bg-gray-900 w-full p-4 flex flex-col items-center">
         <div className="flex gap-2 w-full max-w-md">
           <input
             type="text"
@@ -219,6 +228,7 @@ const AlbumGuesser = ({ albums: initialAlbums, onRestart, onNewArtist }) => {
           Álbumes restantes: {albums.length} | Puntuación: {score}
         </div>
       </div>
+    </div>
     </div>
   );
 };
